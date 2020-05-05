@@ -1,22 +1,21 @@
 class Hand
   attr_accessor :hand
-
+  attr_accessor :points
   def initialize
     @hand = []
+    @points = 0
   end
 
   def add_card(card)
     @hand << card
+    add_points (card)
   end
-
-  def points
-    points = 0
-    @hand.each do |h|
-      if h.rank == 'A' && points + 11 < 21
-        points += 1
+private
+  def add_points (card)
+      if card.rank == 'A' && @points + 11 > 21
+        @points += 1
       else
-        points += h.value
+        @points += card.value
       end
-    end
   end
 end
