@@ -10,7 +10,15 @@ class Hand
     @hand << card
     add_points (card)
   end
+
+  def view_hand
+    @hand.each do |card|
+      print " |#{card.rank}#{card.suit}|"
+    end
+    puts "\nPoints: #{@points}"
+  end
 private
+
   def add_points (card)
       if card.rank == 'A' && @points + 11 > 21
         @points += 1

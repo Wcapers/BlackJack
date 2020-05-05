@@ -13,8 +13,4 @@ class Card
       when 'A' then 11
     end
   end
-
-  def view
-    print @rank, @suit
-  end
 end
