@@ -1,3 +1,4 @@
+require './deck.rb'
 class Hand
   attr_accessor :hand
   attr_accessor :points
@@ -8,16 +9,28 @@ class Hand
 
   def add_card(card)
     @hand << card
-    add_points (card)
+    add_points(card)
   end
 
   def view_hand
     @hand.each do |card|
       print " |#{card.rank}#{card.suit}|"
     end
-    puts "\nPoints: #{@points}"
+    print "\n"
+    view_point
   end
-private
+
+  def view_stars
+    @hand.each { |i| print "|*|"}
+    print "\n"
+  end
+
+  private
+
+  def view_point
+    puts "Points: #{@points}"
+  end
+
 
   def add_points (card)
       if card.rank == 'A' && @points + 11 > 21

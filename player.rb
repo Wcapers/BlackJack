@@ -1,11 +1,18 @@
 class Player
-  attr_accessor :money :hand
-  def initialize (hand)
+  attr_accessor :money, :hand
+  attr_reader :name
+  def initialize (hand, name)
     @hand = hand
     @money = 100
+    @name = name
   end
 
-  def bet (value)
-    @money -= value
+  def bet
+    @money -= 10
   end
+
+  def win_money
+    @money += 20
+  end
+
 end

@@ -13,4 +13,8 @@ class Deck
     end
     @cards.shuffle!
   end
+
+  def del_card(card)
+    @cards.delete(card)
+  end
 end
