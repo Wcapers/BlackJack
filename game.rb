@@ -4,22 +4,28 @@ class Game
 
   def initialize (player_name)
     @deck = Deck.new
-    @player = Player.new(hand.new, player_name)
-    @dealer = Player.new(hand.new, 'Dealer')
+    @player = Player.new(Hand.new, player_name)
+    @dealer = Player.new(Hand.new, 'Dealer')
   end
 
   def first_move
-    give cards(2, @dealer)
-    give cards(2, @player)
+    give_cards(2, @dealer)
+    give_cards(2, @player)
     @player.bet
     @dealer.bet
+    view_money(@dealer)
     @dealer.hand.view_stars
     @player.hand.view_hand
+    view_money(@player)
   end
+
+ def view_money(person)
+  puts "Счет игрока #{person.name}: #{person.money}"
+ end
 
   def give_cards(n, person)
     for i in 1..n
-      card = @deck.cards[rand(cards.size)]
+      card = @deck.cards[rand(@deck.cards.size)]
       person.hand.add_card(card)
       @deck.del_card(card)
     end
@@ -48,7 +54,7 @@ class Game
   end
 
 
-  def print_winner_stats
+  def end_game
     winner = find__winner
     case find_winner
     when 0
@@ -62,6 +68,7 @@ class Game
       puts "Деньги крупье: #{@dealer.money}\nДеньги #{@player.name}:#{@player.money}"
     end
   end
+
   def find_winner
     if @player.hand.points > @dealer.hand.points && @player.hand.points <= 21 || @dealer.hand.points > 21 && @player.hand.points <= 21
       @player
@@ -69,5 +76,9 @@ class Game
       0
     else
       @dealer
+  end
+
+  def three_cards?
+    @player.hand.size == 3 && @dealer.hand.size == 3
   end
 end
