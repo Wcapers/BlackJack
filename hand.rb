@@ -23,7 +23,7 @@ class Hand
   end
 
   def view_stars
-    @hand.each { |_i| print '|*|' }
+    @hand.each { |_i| print ' |**|' }
     print "\n"
   end
 
@@ -31,6 +31,9 @@ class Hand
     puts "Points: #{@points}"
   end
 
+  def clean
+    @hand = []
+  end
   private
 
   def add_points(card)
