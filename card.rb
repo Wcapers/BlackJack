@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Card
   attr_accessor :suit, :rank
 
@@ -8,9 +10,9 @@ class Card
 
   def value
     case @rank
-      when 2..9 then @rank
-      when /J|Q|K/ then 10
-      when 'A' then 11
+    when 2..9 then @rank
+    when /J|Q|K/ then 10
+    when 'A' then 11
     end
   end
 end

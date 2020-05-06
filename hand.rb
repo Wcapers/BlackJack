@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require './deck.rb'
 class Hand
-  attr_accessor :hand
-  attr_accessor :points
+  attr_accessor :points, :hand
+
   def initialize
     @hand = []
     @points = 0
@@ -17,26 +19,25 @@ class Hand
       print " |#{card.rank}#{card.suit}|"
     end
     print "\n"
-    view_point
+    view_points
   end
 
   def view_stars
-    @hand.each { |i| print "|*|"}
+    @hand.each { |_i| print '|*|' }
     print "\n"
+  end
+
+  def view_points
+    puts "Points: #{@points}"
   end
 
   private
 
-  def view_point
-    puts "Points: #{@points}"
-  end
-
-
-  def add_points (card)
-      if card.rank == 'A' && @points + 11 > 21
-        @points += 1
-      else
-        @points += card.value
-      end
+  def add_points(card)
+    @points += if card.rank == 'A' && @points + 11 > 21
+                 1
+               else
+                 card.value
+               end
   end
 end
