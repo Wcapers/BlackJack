@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require './deck.rb'
 class Hand
   attr_accessor :points, :hand
 
@@ -33,7 +32,9 @@ class Hand
 
   def clean
     @hand = []
+    @points = 0
   end
+
   private
 
   def add_points(card)

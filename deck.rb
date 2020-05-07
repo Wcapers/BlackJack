@@ -8,7 +8,7 @@ class Deck
 
   def initialize
     @cards = []
-    deleted = []
+    @deleted = []
     @@ranks.each do |rank|
       @@suits.each do |suit|
         @cards << Card.new(suit, rank)

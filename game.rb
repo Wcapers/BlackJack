@@ -1,12 +1,10 @@
 # frozen_string_literal: true
-
-# arr[rand(arr.size)] random arr value
 class Game
   attr_accessor :deck, :player, :dealer
 
   def initialize(player_name)
     @player = Player.new(Hand.new, player_name)
-    @dealer = Player.new(Hand.new, 'Dealer')
+    @dealer = Player.new(Hand.new, 'Дилер')
     @deck = Deck.new
   end
 
@@ -45,7 +43,7 @@ class Game
   end
 
   def player_hand
-    puts "Ваши карты, #{@player.name}"
+    puts "Карты #{@player.name}"
     @player.hand.view_hand
   end
 
@@ -56,13 +54,12 @@ class Game
 
   def dealer_move
     puts "Ход диллера..."
-    give_cards(1, @dealer) if @dealer.hand.points < 17
+    give_cards(1, @dealer) if @dealer.hand.points < 17 && dealer.hand.hand.size < 3
   end
 
   def open_cards
     puts 'Карты крупье:'
     @dealer.hand.view_hand
-    @dealer.hand.view_points
     player_hand
     end_game
   end
@@ -92,6 +89,6 @@ class Game
   end
 
   def three_cards?
-    @player.hand.hand.size == 3 && @dealer.hand.hand.size == 3
+    @player.hand.hand.size == 3
   end
 end
