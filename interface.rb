@@ -6,7 +6,6 @@ require './hand.rb'
 require './player.rb'
 require './game.rb'
 class Interface
-  attr_accessor :qame
 
   def initialize
     @bank = 0
