@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Game
   attr_accessor :deck, :player, :dealer
 
@@ -53,8 +54,10 @@ class Game
   end
 
   def dealer_move
-    puts "Ход диллера..."
-    give_cards(1, @dealer) if @dealer.hand.points < 17 && dealer.hand.hand.size < 3
+    puts 'Ход диллера...'
+    if @dealer.hand.points < 17 && @dealer.hand.hand.size < 3
+      give_cards(1, @dealer)
+    end
   end
 
   def open_cards
@@ -75,13 +78,16 @@ class Game
       winner.win_money(20)
       puts "Победил: #{winner.name}!"
     end
-    puts "Деньги крупье: #{@dealer.money}\nДеньги #{@player.name}:#{@player.money}"
+    puts "Деньги крупье: #{@dealer.money}"
+    puts "Деньги #{@player.name}: #{@player.money}"
   end
 
   def find_winner
-    if @player.hand.points > @dealer.hand.points && @player.hand.points <= 21 || @dealer.hand.points > 21 && @player.hand.points <= 21
+    if @player.hand.points > @dealer.hand.points && @player.hand.points <= 21 ||
+        @dealer.hand.points > 21 && @player.hand.points <= 21
       @player
-    elsif @player.hand.points == @dealer.hand.points || @player.hand.points > 21 && @dealer.hand.points > 21
+    elsif @player.hand.points == @dealer.hand.points || @player.hand.points > 21 &&
+        @dealer.hand.points > 21
       0
     else
       @dealer
