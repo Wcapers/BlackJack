@@ -14,7 +14,7 @@ class Interface
   end
 
   def start
-   if bankrot?
+   bankrot_menu if bankrot?
     @game.first_move
     turn = 0
     loop do
@@ -24,6 +24,7 @@ class Interface
       puts "Введите 1 чтобы взять карту"
       puts "Введите 2 чтобы пропустить ход"
       puts "Введите 3 чтобы открыть карты"
+      puts "Введите 4 чтобы начать новую игру"
       case gets.chomp.to_i
       when 0
         "До встречи!"
@@ -38,8 +39,10 @@ class Interface
           turn = 0
           next
         end
+      when 4
+        new_game
       else
-      rescue 'Неизвестное значение'
+      raise 'Неизвестное значение'
       end
       @game.dealer_move
       @game.view_dealer_cards
@@ -49,7 +52,7 @@ class Interface
         exit unless continue?
         start
       end
-  end
+    end
   end
 
   def continue?
@@ -78,7 +81,7 @@ class Interface
     when 1 then new_game
     when 2 then exit
     else
-    rescue "Неизвестное значение"
+    raise "Неизвестное значение"
     end
   end
 end
