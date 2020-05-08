@@ -5,15 +5,56 @@ require './deck.rb'
 require './hand.rb'
 require './player.rb'
 require './game.rb'
-class Interface
+module Interface
+  module_function
 
-  def initialize
-    @bank = 0
+  def welcome
+    puts 'Добро пожаловать!'
     puts 'Введите свое имя:'
-    @game = Game.new(gets.chomp)
-    puts "Добро пожаловать, #{@game.player.name}!"
+    gets.chomp.to_i
   end
 
+  def ask_player_decision
+    puts 'Введите 1 чтобы взять карту'
+    puts 'Введите 2 чтобы пропустить ход'
+    puts 'Введите 3 чтобы открыть карты'
+    puts 'Введите любое значение чтобы выйти'
+    case gets.chomp.to_i
+    when 1 then :take_card
+    when 2 || 3 then :pass
+    else 0
+    end
+  end
+
+  def view_hand(person)
+    puts "Карты #{person.name}"
+    person.hand.cards.each do |card|
+      print " |#{card.rank}#{card.suit}|"
+    end
+    print "\n"
+    view_points(person)
+  end
+
+  def view_points(person)
+    puts "Points: #{person.hand.points}"
+  end
+
+  def dealer_hand(person)
+    puts 'Карты крупье:'
+    person.hand.cards.each { |_i| print ' |**|' }
+    print "\n"
+  end
+
+  def view_money(person)
+    puts "Счет игрока #{person.name}: #{person.money}"
+  end
+
+  def overview(player, dealer)
+    dealer_hand(dealer)
+    view_hand(player)
+    view_points(player)
+  end
+  
   def start
     bankrot_menu if bankrot?
     @game.first_move
@@ -69,6 +110,7 @@ class Interface
     @game.player.name if @game.player.money.zero?
     @game.dealer.name if @game.dealer.money.zero?
   end
+
 
   def new_game
     initialize
