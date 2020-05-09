@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class Player
-  attr_accessor :money, :hand
-  attr_reader :name
+  attr_reader :name, :money, :hand
 
   def initialize(hand, name)
     @hand = hand

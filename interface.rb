@@ -26,7 +26,7 @@ module Interface
   end
 
   def continue?
-    puts "Сыграть еще одну раздачу?(1 - да, любой текст - нет)"
+    puts 'Сыграть еще одну раздачу?(1 - да, любой текст - нет)'
     gets.chomp.to_i == 1
   end
 
@@ -60,12 +60,12 @@ module Interface
   end
 
   def dealer_msg
-    puts "Ход диллера"
+    puts 'Ход диллера'
   end
 
   def print_winner(winner)
-    puts "Ничья" if winner == 0
-    puts "Победил #{winner.name}!" unless winner == 0
+    puts 'Ничья' if winner.zero?
+    puts "Победил #{winner.name}!" unless winner.zero?
   end
 
   def view_bankrot(bankrot)
@@ -73,12 +73,7 @@ module Interface
   end
 
   def new_game?
-    puts "Начать новую игру? (1-да, любой другой текст - нет)"
-    gets.chomp.to_i == 1
-  end
-
-  def continue?
-    puts 'Продолжить игру? (0 - нет, 1 - да)'
+    puts 'Начать новую игру? (1-да, любой другой текст - нет)'
     gets.chomp.to_i == 1
   end
 end

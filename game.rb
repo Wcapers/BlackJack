@@ -26,6 +26,7 @@ class Game
       Interface.view_hand(@player)
       @round.end_round(winner)
       next if Interface.continue?
+
       exit
     end
     Interface.view_bankrot(@round.who_bankrot)
@@ -41,10 +42,10 @@ class Game
     @round.first_move
     Interface.view_money(@dealer)
     Interface.view_money(@player)
-    Interface.overview(@player,@dealer)
+    Interface.overview(@player, @dealer)
   end
 
-  def player_decision (decision, turn)
+  def player_decision(decision, _turn)
     case decision
     when :take_card then @round.give_cards(1, @player)
     when :pass then Interface.dealer_msg

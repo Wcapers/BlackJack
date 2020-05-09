@@ -1,11 +1,12 @@
+# frozen_string_literal: true
+
 require './card.rb'
 require './deck.rb'
 require './hand.rb'
 require './player.rb'
 
 class Round
-  attr_accessor :deck, :player, :dealer
-
+  attr_accessor :player, :dealer
   def initialize(player_name)
     @player = Player.new(Hand.new, player_name)
     @dealer = Player.new(Hand.new, 'Дилер')
@@ -47,10 +48,10 @@ class Round
 
   def find_winner
     if @player.hand.points > @dealer.hand.points && @player.hand.points <= 21 ||
-        @dealer.hand.points > 21 && @player.hand.points <= 21
+       @dealer.hand.points > 21 && @player.hand.points <= 21
       @player
     elsif @player.hand.points == @dealer.hand.points || @player.hand.points > 21 &&
-        @dealer.hand.points > 21
+                                                        @dealer.hand.points > 21
       0
     else
       @dealer
