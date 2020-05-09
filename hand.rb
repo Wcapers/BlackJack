@@ -1,37 +1,20 @@
 # frozen_string_literal: true
 
 class Hand
-  attr_accessor :points, :hand
+  attr_accessor :points, :cards
 
   def initialize
-    @hand = []
+    @cards = []
     @points = 0
   end
 
   def add_card(card)
-    @hand << card
+    @cards << card
     add_points(card)
   end
 
-  def view_hand
-    @hand.each do |card|
-      print " |#{card.rank}#{card.suit}|"
-    end
-    print "\n"
-    view_points
-  end
-
-  def view_stars
-    @hand.each { |_i| print ' |**|' }
-    print "\n"
-  end
-
-  def view_points
-    puts "Points: #{@points}"
-  end
-
   def clean
-    @hand = []
+    @cards = []
     @points = 0
   end
 

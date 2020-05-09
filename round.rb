@@ -1,3 +1,8 @@
+require './card.rb'
+require './deck.rb'
+require './hand.rb'
+require './player.rb'
+
 class Round
   attr_accessor :deck, :player, :dealer
 
@@ -27,13 +32,15 @@ class Round
 
   def player_move(decision)
     case decision
-    when take_card
+    when :take_card
       give_cards(1, @player)
+    when :pass
+      dealer_move
     end
   end
 
   def dealer_move
-    if @dealer.hand.points < 17 && @dealer.hand.hand.size < 3
+    if @dealer.hand.points < 17 && @dealer.hand.cards.size < 3
       give_cards(1, @dealer)
     end
   end
@@ -51,6 +58,28 @@ class Round
   end
 
   def three_cards?
-    @player.hand.hand.size == 3
+    @player.hand.cards.size == 3
+  end
+
+  def bankrot?
+    @player.money.zero? || @dealer.money.zero?
+  end
+
+  def end_round?(turn)
+    three_cards? || turn == 2
+  end
+
+  def end_round(winner)
+    case find_winner
+    when 0
+      @player.win_money(10)
+      @dealer.win_money(10)
+    else
+      winner.win_money(20)
+    end
+  end
+  def who_bankrot
+    @player.name if @player.money.zero?
+    @dealer.name if @dealer.money.zero?
   end
 end
