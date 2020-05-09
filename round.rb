@@ -78,8 +78,9 @@ class Round
       winner.win_money(20)
     end
   end
+
   def who_bankrot
-    @player.name if @player.money.zero?
-    @dealer.name if @dealer.money.zero?
+    return @player if @player.money.zero?
+    return @dealer if @dealer.money.zero?
   end
 end

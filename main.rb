@@ -1,4 +1,3 @@
 # frozen_string_literal: true
-
-require './interface.rb'
-Interface.new.start
+require './game.rb'
+Game.new.start

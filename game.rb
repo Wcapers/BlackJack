@@ -2,6 +2,7 @@ require './round.rb'
 require './interface.rb'
 
 class Game
+  attr_accessor :round, :dealer
   def initialize
     @round = Round.new(Interface.welcome)
     @player = @round.player
@@ -17,6 +18,7 @@ class Game
         @turn += 1
         player_decision(Interface.ask_player_decision , @turn)
         @round.dealer_move
+        Interface.overview(@player,@dealer)
       end
       winner = @round.find_winner
       Interface.print_winner(winner)
