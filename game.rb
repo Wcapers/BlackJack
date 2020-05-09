@@ -3,6 +3,7 @@ require './interface.rb'
 
 class Game
   attr_accessor :round, :dealer
+  
   def initialize
     @round = Round.new(Interface.welcome)
     @player = @round.player

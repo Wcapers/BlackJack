@@ -64,8 +64,8 @@ module Interface
   end
 
   def print_winner(winner)
-    puts 'Ничья' if winner.zero?
-    puts "Победил #{winner.name}!" unless winner.zero?
+    puts 'Ничья' if winner == 0
+    puts "Победил #{winner.name}!" unless winner == 0
   end
 
   def view_bankrot(bankrot)
